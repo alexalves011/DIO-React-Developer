@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 import { Header } from "../../components/Header/index";
 import background from "../../assets/github.png";
 import "./style.css";
@@ -6,7 +6,28 @@ import ItemList from "../../components/itemList";
 
 function App() {
 
+  const [user, setUser] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
+  const [repos, setRepos] = useState(null);
 
+  const handleGetData = async () => { 
+
+    const userData = await fetch(`https://api.github.com/users/${user}`)
+    const newUser = await userData.json();
+
+    if(newUser.name){
+      const {avatar_url, name, bio} = newUser
+      setCurrentUser({avatar_url, name, bio});
+    }
+
+    const reposData = await fetch(`https://api.github.com/users/${user}/repos`)
+    const newreposData = await reposData.json();
+
+    if(newreposData.length){
+      setRepos(newreposData);
+    }
+
+   }
 
 
   return (
@@ -19,11 +40,12 @@ function App() {
 
         <div className="info">
 
-          <div className="inputbutton"> <input name="usuario" placeholder="@username"/> 
-          <button>Buscar</button>  </div>
+          <div className="inputbutton"> <input name="usuario" value={user} onChange={event => setUser(event.target.value)} placeholder="@username"/> 
+          <button onClick={handleGetData}>Buscar</button>  </div>
 
+          {currentUser.name ? (<>
 
-          <div className="perfil"> 
+            <div className="perfil"> 
             <img src="https://avatars.githubusercontent.com/u/167913877?v=4" className="profile" alt="perfil"></img>
 
             <div>
@@ -34,6 +56,13 @@ function App() {
           </div>
 
           <hr/>
+
+          </>
+            
+          ) : null}
+
+
+          
 
           <div>
             <h4 className="repositorio">Repositórios </h4>

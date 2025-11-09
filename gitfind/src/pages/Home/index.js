@@ -16,8 +16,8 @@ function App() {
     const newUser = await userData.json();
 
     if(newUser.name){
-      const {avatar_url, name, bio} = newUser
-      setCurrentUser({avatar_url, name, bio});
+      const {avatar_url, name, bio, login} = newUser
+      setCurrentUser({avatar_url, name, bio, login});
     }
 
     const reposData = await fetch(`https://api.github.com/users/${user}/repos`)
@@ -28,7 +28,7 @@ function App() {
     }
 
    }
-
+   
 
   return (
     <div className="App">
@@ -43,15 +43,15 @@ function App() {
           <div className="inputbutton"> <input name="usuario" value={user} onChange={event => setUser(event.target.value)} placeholder="@username"/> 
           <button onClick={handleGetData}>Buscar</button>  </div>
 
-          {currentUser.name ? (<>
+          {currentUser?.name ? (<>
 
             <div className="perfil"> 
-            <img src="https://avatars.githubusercontent.com/u/167913877?v=4" className="profile" alt="perfil"></img>
+            <img src={currentUser.avatar_url}></img>
 
             <div>
-              <h3>Alex Alves</h3>
-              <span>@Alexalves</span>
-              <p> Descrição </p>
+              <h3>{currentUser.name}</h3>
+              <span>@{currentUser.login}</span>
+              <p> {currentUser.bio} </p>
             </div>
           </div>
 
@@ -63,14 +63,26 @@ function App() {
 
 
           
+          {repos?.length ? (
+  
+  <div>
+    <h4 className="repositorio">Repositórios </h4>
+    
+    {/* Aqui está o .map() funcionando:
+      1. Usamos 'repo' (singular) para cada item.
+      2. Usamos parênteses () para "retornar" o JSX automaticamente.
+      3. Passamos os dados REAIS (repo.name, etc.) para as props.
+    */}
+    {repos.map(repo => (
+      <ItemList 
+        key={repo.id} 
+        title={repo.name} 
+        description={repo.description}
+      />
+    ))}
+  </div>
 
-          <div>
-            <h4 className="repositorio">Repositórios </h4>
-            <ItemList title= "Teste titulo" description= "Teste Descrição"/>
-            <ItemList title= "Teste titulo" description= "Teste Descrição"/>
-            <ItemList title= "Teste titulo" description= "Teste Descrição"/>
-            <ItemList title= "Teste titulo" description= "Teste Descrição"/>
-          </div>
+) : null}
 
         </div>
       </div>

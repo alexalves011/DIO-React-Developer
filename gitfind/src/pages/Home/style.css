@@ -28,6 +28,7 @@ input {
   background: transparent;
   font-size: 18px;
   padding: 10px;
+  color: white;
 }
 
 button {
@@ -44,6 +45,13 @@ button {
 .perfil {
   display: flex;
   margin: 40px 0;
+}
+
+.perfil img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  padding-right: 20px;
 }
 
 .profile {
@@ -81,5 +89,5 @@ button {
   color: #ffffff;
   margin: 12px 0;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif ;
+  font-family: Arial, Helvetica, sans-serif;
 }

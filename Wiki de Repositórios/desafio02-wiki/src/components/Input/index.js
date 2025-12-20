@@ -2,10 +2,10 @@ import React from "react";
 
 import { InputContainer } from "./style";
 
-function Input() {
+  function Input({value, onChange}) {
   return (
     <InputContainer>
-      <input placeholder="Digite um usuário" />
+      <input placeholder="@Username" value={value} onChange={onChange} />
     </InputContainer>
   );
 }

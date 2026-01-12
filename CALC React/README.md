@@ -23,4 +23,4 @@ Este projeto tem como objetivo aprender e praticar:
 | CSS        | 3      | Estilização de componentes                 |
 
 
-Bom aprendizado! 💻✨
+

@@ -1,70 +1,258 @@
-# Getting Started with Create React App
+# 📱 DIO User Feed - Sistema de Feed de Usuários
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Um projeto completo de uma aplicação web que simula um feed social de usuários com autenticação, roteamento e consumo de API REST.
 
-## Available Scripts
+## 🎯 Objetivo do Projeto
 
-In the project directory, you can run:
+Este desafio tem como objetivo praticar e consolidar conhecimentos em:
 
-### `npm start`
+- ✅ Roteamento com **React Router v6**
+- ✅ Autenticação de usuários (Login/Home/Feed)
+- ✅ Consumo de **API REST com Axios**
+- ✅ Gerenciamento de estado com **Hooks (useState)**
+- ✅ Estilização com **Styled Components**
+- ✅ Validação de formulários com **React Hook Form**
+- ✅ Integração com **JSON Server** como backend simulado
+- ✅ Componentização e separação de responsabilidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Tecnologias Utilizadas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Tecnologia        | Versão | Descrição                                  |
+| ----------------- | ------ | ------------------------------------------ |
+| React             | 18.2.0 | Biblioteca principal para construção da UI |
+| React Router DOM  | 6.3.0  | Roteamento entre páginas                   |
+| Axios             | 0.27.2 | Consumo de APIs REST                       |
+| Styled Components | 5.3.5  | Estilização CSS-in-JS                      |
+| React Hook Form   | 7.33.1 | Gerenciamento de formulários               |
+| React Icons       | 4.4.0  | Ícones reutilizáveis                       |
+| JSON Server       | 0.17.0 | Servidor mock para dados                   |
 
-### `npm test`
+## 📂 Estrutura do Projeto
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+desafio-03-dio/
+├── public/
+│   ├── index.html
+│   ├── manifest.json
+│   └── robots.txt
+├── src/
+│   ├── components/
+│   │   ├── Button/
+│   │   │   ├── index.jsx
+│   │   │   └── styles.js
+│   │   ├── Card/
+│   │   │   ├── index.jsx
+│   │   │   └── styles.js
+│   │   ├── Header/
+│   │   │   ├── index.jsx
+│   │   │   └── styles.js
+│   │   ├── Input/
+│   │   │   ├── index.jsx
+│   │   │   └── styles.js
+│   │   └── UserInfo/
+│   │       ├── index.jsx
+│   │       └── styles.js
+│   ├── pages/
+│   │   ├── home/
+│   │   │   ├── index.jsx
+│   │   │   └── styles.js
+│   │   ├── login/
+│   │   │   ├── index.jsx
+│   │   │   └── styles.js
+│   │   └── feed/
+│   │       ├── index.jsx
+│   │       └── styles.js
+│   ├── services/
+│   │   └── api.js
+│   ├── styles/
+│   │   └── global.js
+│   ├── App.js
+│   └── index.js
+├── db.json          # Base de dados simulada (JSON Server)
+├── package.json
+└── README.md
+```
 
-### `npm run build`
+## 🚀 Como Usar
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Instalação
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# Instale as dependências
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Inicie o JSON Server (em um terminal separado)
 
-### `npm run eject`
+```bash
+npm run api
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+O servidor estará rodando em `http://localhost:8001`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 3. Inicie a Aplicação (em outro terminal)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+A aplicação abrirá em `http://localhost:3000`
 
-## Learn More
+## 📋 Fluxo da Aplicação
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+┌─────────────┐
+│   Usuário   │
+└──────┬──────┘
+       │
+       ▼
+┌──────────────────┐
+│  Página Login    │
+│ (Autenticação)   │
+└────────┬─────────┘
+         │ ✓ Login bem-sucedido
+         ▼
+┌──────────────────┐
+│  Página Home     │
+│ (Boas-vindas)    │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  Página Feed     │
+│ (Feed do usuário)│
+└──────────────────┘
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🔑 Funcionalidades Principais
 
-### Code Splitting
+### 1. **Página de Login**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Formulário de autenticação com validação
+- Armazenamento de dados do usuário
+- Redirecionamento automático após login
 
-### Analyzing the Bundle Size
+### 2. **Página Home**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Boas-vindas ao usuário autenticado
+- Exibição de informações do perfil
+- Botão para acessar o feed
 
-### Making a Progressive Web App
+### 3. **Página Feed**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Exibição de cartões com informações de usuários
+- Consumo de dados da API (JSON Server)
+- Componentes reutilizáveis (Card, UserInfo)
 
-### Advanced Configuration
+### 4. **Componentes Reutilizáveis**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Button**: Botão estilizado
+- **Input**: Campo de entrada com validação
+- **Card**: Container para exibição de dados
+- **Header**: Cabeçalho da aplicação
+- **UserInfo**: Exibição de informações do usuário
 
-### Deployment
+## 🔌 Integração com API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Arquivo: `src/services/api.js`
 
-### `npm run build` fails to minify
+```javascript
+import axios from "axios";
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+const api = axios.create({
+  baseURL: "http://localhost:8001",
+});
+
+export default api;
+```
+
+### Endpoints Utilizados
+
+```
+GET  /users      - Listar todos os usuários
+POST /users      - Criar novo usuário
+GET  /users/:id  - Obter usuário específico
+```
+
+## 📊 Base de Dados (db.json)
+
+```json
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "João Silva",
+      "email": "joao@exemplo.com",
+      "followers": 1250,
+      "following": 380,
+      "avatar": "url-da-imagem"
+    }
+  ]
+}
+```
+
+## 🎨 Estilização
+
+O projeto utiliza **Styled Components** para estilização CSS-in-JS:
+
+```javascript
+import styled from "styled-components";
+
+export const ButtonContainer = styled.button`
+  background-color: #0066ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0052cc;
+  }
+`;
+```
+
+## 🧠 Conceitos Aprendidos
+
+- **Roteamento Dinâmico**: Navegação entre páginas com React Router
+- **Autenticação Básica**: Simulação de login e armazenamento de sessão
+- **Requisições HTTP**: Consumo de API com Axios
+- **Estado Local**: Gerenciamento com useState
+- **Validação de Formulários**: Integração com React Hook Form
+- **Componentes Funcionais**: Uso de Functional Components e Hooks
+- **Estilização Avançada**: Styled Components para CSS dinâmico
+
+## 💡 Melhorias Sugeridas
+
+- [ ] Implementar autenticação real com JWT
+- [ ] Adicionar Redux ou Context API para estado global
+- [ ] Criar testes unitários com Jest
+- [ ] Implementar tratamento de erros mais robusto
+- [ ] Adicionar loading states durante requisições
+- [ ] Otimizar imagens e performance
+- [ ] Adicionar responsividade mobile
+
+## 🐛 Troubleshooting
+
+### Erro: "Cannot GET /api/users"
+
+- Certifique-se de que o JSON Server está rodando (`npm run api`)
+- Verifique a porta 8001 está disponível
+
+### Erro: "Module not found"
+
+- Rode `npm install` novamente
+- Limpe o cache com `npm cache clean --force`
+
+## 📚 Recursos Adicionais
+
+- [Documentação React Router v6](https://reactrouter.com)
+- [Guia Axios](https://axios-http.com/docs/intro)
+- [Styled Components Docs](https://styled-components.com/docs)
+- [React Hook Form](https://react-hook-form.com)
+
+---
+
+**Projeto desenvolvido durante o Bootcamp React Developer - DIO** 🚀
+
+Bom aprendizado! 💻✨
